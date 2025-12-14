@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For you, Vivian</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffafcc, #ffc8dd, #cdb4db);
+            color: #590d22;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #a4133c;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .heart-icon {
+            color: #ff4d6d;
+            font-size: 2.5rem;
+            margin: 0 10px;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-top: 10px;
+            color: #800f2f;
+        }
+        
+        /* Love Message Section */
+        .message-section {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(166, 19, 60, 0.2);
+            animation: fadeInUp 1.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .message-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #ff4d6d, #ff8fa3, #ff4d6d);
+        }
+        
+        .vivian-name {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #a4133c;
+            margin-bottom: 20px;
+        }
+        
+        .message-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+        
+        .highlight {
+            color: #ff4d6d;
+            font-weight: 600;
+        }
+        
+        /* Love Icons Section */
+        .icons-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        .icon-item {
+            text-align: center;
+            width: 200px;
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(166, 19, 60, 0.15);
+            transition: transform 0.3s ease;
+        }
+        
+        .icon-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .icon-item i {
+            font-size: 3rem;
+            color: #ff4d6d;
+            margin-bottom: 15px;
+        }
+        
+        .icon-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #800f2f;
+        }
+        
+        /* Love Note */
+        .love-note {
+            background: linear-gradient(45deg, #ff8fa3, #ffccd5);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #590d22;
+            position: relative;
+            animation: pulse 3s infinite;
+        }
+        
+        .love-note::after {
+            content: "\f004";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            color: rgba(89, 13, 34, 0.2);
+            font-size: 2.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+            color: #800f2f;
+            animation: fadeIn 2.5s ease-out;
+        }
+        
+        .hearts-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .floating-heart {
+            color: #ff4d6d;
+            margin: 5px 10px;
+            font-size: 1.5rem;
+            animation: float 3s infinite ease-in-out;
+        }
+        
+        .floating-heart:nth-child(2) { animation-delay: 0.5s; }
+        .floating-heart:nth-child(3) { animation-delay: 1s; }
+        .floating-heart:nth-child(4) { animation-delay: 1.5s; }
+        .floating-heart:nth-child(5) { animation-delay: 2s; }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 77, 109, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 77, 109, 0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .vivian-name { font-size: 2.8rem; }
+            .message-section { padding: 25px; }
+            .love-note { font-size: 1.7rem; }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem; }
+            .vivian-name { font-size: 2.3rem; }
+            .message-text { font-size: 1.1rem; }
+            .icon-item { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <marquee>
+            <h1>For My Dearest <span class="heart-icon">❤</span> Vivian</h1>
+        </marquee>
+            <p class="subtitle">A website i dedicated to the most amazing woman in my life</p>
+        </header>
+        
+        <section class="message-section">
+            <h2 class="vivian-name">To Vivian</h2>
+            
+            <p class="message-text">
+                From the moment you came into my life, everything changed for the better. Your name, <span class="highlight">Vivian</span>, means "full of life," and that's exactly what you are - a radiant, vibrant soul who brings light to every room you enter.
+            </p>
+            
+            <p class="message-text">
+                I want you to know how deeply I admire you. You are not just beautiful on the outside, but you possess an inner beauty that shines through in everything you do. Your strength inspires me, your kindness touches my heart, and your text is my favorite thing in the world.
+            </p>
+            
+            <p class="message-text">
+                You are a <span class="highlight">super woman</span> - strong, capable, and resilient. You face challenges with grace and determination, and I'm constantly in awe of your ability to handle anything life throws your way. You appreciate yourself, and that self-love makes you even more beautiful.
+            </p>
+            
+            <p class="message-text">
+                This website i created to express my feeling to you. Every word, every color, every animation represents a fraction of what I feel for you. You are my sunshine on cloudy days, my comfort in difficult times, and my greatest joy in life.
+            </p>
+        </section>
+        
+        <section class="icons-section">
+            <div class="icon-item">
+                <i class="fas fa-heart"></i>
+                <h3 class="icon-title">my best friebd</h3>
+                <p>You have all of my heart, forever and always.</p>
+            </div>
+            
+            <div class="icon-item">
+                <i class="fas fa-star"></i>
+                <h3 class="icon-title">My Shining Star</h3>
+                <p>You light up my world with your brilliance.</p>
+            </div>
+            
+            <div class="icon-item">
+                <i class="fas fa-crown"></i>
+                <h3 class="icon-title">My Queen</h3>
+                <p>You deserve all the love and admiration in the world.</p>
+            </div>
+            
+            <div class="icon-item">
+                <i class="fas fa-dove"></i>
+                <h3 class="icon-title">My Peace</h3>
+                <p>With you, I've found my peace and my home.</p>
+            </div>
+        </section>
+        
+        <div class="love-note">
+            Vivian, you are loved more than words could ever express please just accept my request you will never regret to be mine.
+        </div>
+        
+        <section class="icons-section">
+            <div class="icon-item">
+                <i class="fas fa-gem"></i>
+                <h3 class="icon-title">Precious</h3>
+                <p>You are more valuable than any jewel.</p>
+            </div>
+            
+            <div class="icon-item">
+                <i class="fas fa-sun"></i>
+                <h3 class="icon-title">My Sunshine</h3>
+                <p>You brighten even my darkest days.</p>
+            </div>
+            
+            <div class="icon-item">
+                <i class="fas fa-rocket"></i>
+                <h3 class="icon-title">Amazing</h3>
+                <p>You achieve incredible things with grace.</p>
+            </div>
+            
+            <div class="icon-item">
+                <i class="fas fa-infinity"></i>
+                <h3 class="icon-title">Forever</h3>
+                <p>My love for you has no end.</p>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="hearts-container">
+                <div class="floating-heart">❤</div>
+                <div class="floating-heart">💖</div>
+                <div class="floating-heart">💕</div>
+                <div class="floating-heart">💗</div>
+                <div class="floating-heart">💓</div>
+            </div>
+            
+            <p>I Created with all the love in my heart for you, Vivian</p>
+            <p>You are beautiful, Super woman, Good adviser,  strong, and deeply cherished</p>
+            <p style="margin-top: 20px; font-size: 0.8rem;">Every day with you is a blessing I don't take for granted</p>
+            <p>&copy;2025 All Right Reserved <br>Designed & Developed by Zacharia
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add floating hearts animation to the background
+            function createFloatingHeart() {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤';
+                heart.style.position = 'fixed';
+                heart.style.color = '#ff4d6d';
+                heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '100vh';
+                heart.style.zIndex = '-1';
+                heart.style.pointerEvents = 'none';
+                document.body.appendChild(heart);
+                
+                // Animate the heart
+                const duration = Math.random() * 5 + 5;
+                const animation = heart.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: heart.style.opacity },
+                    { transform: `translateY(-100vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                });
+                
+                // Remove heart after animation completes
+                animation.onfinish = () => heart.remove();
+            }
+            
+            // Create initial hearts
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => createFloatingHeart(), i * 300);
+            }
+            
+            // Continue creating hearts periodically
+            setInterval(createFloatingHeart, 2000);
+            
+            // Add click effect - hearts appear where user clicks
+            document.addEventListener('click', function(e) {
+                const clickHeart = document.createElement('div');
+                clickHeart.innerHTML = '❤';
+                clickHeart.style.position = 'fixed';
+                clickHeart.style.color = '#ff4d6d';
+                clickHeart.style.fontSize = '25px';
+                clickHeart.style.left = e.clientX - 12.5 + 'px';
+                clickHeart.style.top = e.clientY - 12.5 + 'px';
+                clickHeart.style.zIndex = '1000';
+                clickHeart.style.pointerEvents = 'none';
+                document.body.appendChild(clickHeart);
+                
+                // Animate the click heart
+                const clickAnimation = clickHeart.animate([
+                    { transform: 'scale(1)', opacity: 1 },
+                    { transform: 'scale(2)', opacity: 0 }
+                ], {
+                    duration: 1000,
+                    easing: 'ease-out'
+                });
+                
+                // Remove after animation
+                clickAnimation.onfinish = () => clickHeart.remove();
+            });
+            
+            // Add a special message when Vivian's name is clicked
+            const vivianName = document.querySelector('.vivian-name');
+            vivianName.addEventListener('click', function() {
+                alert("Vivian, every time I say your name, my heart skips a beat. You mean everything to me. ❤️");
+            });
+        });
+    </script>
+</body>
+</html>
