@@ -20,8 +20,87 @@
             min-height: 100vh;
             overflow-x: hidden;
             padding: 20px;
+            padding-top: 100px; /* Added space for fixed navbar */
         }
         
+        /* ===== NEW NAVIGATION BAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(166, 19, 60, 0.1);
+            z-index: 1000;
+            padding: 15px 20px;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #a4133c;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-logo i {
+            margin-right: 10px;
+            color: #ff4d6d;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: 30px;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #800f2f;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            background-color: #ffccd5;
+            color: #a4133c;
+        }
+        
+        .nav-link.active {
+            background-color: #ff4d6d;
+            color: white;
+        }
+        
+        .nav-link i {
+            margin-right: 8px;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: #a4133c;
+        }
+        
+        /* ===== EXISTING STYLES ===== */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -188,6 +267,55 @@
         .floating-heart:nth-child(4) { animation-delay: 1.5s; }
         .floating-heart:nth-child(5) { animation-delay: 2s; }
         
+        /* Page Sections (for navigation) */
+        .page-section {
+            display: none;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .page-section.active {
+            display: block;
+        }
+        
+        /* About & Contact Sections */
+        .about-section, .contact-section {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(166, 19, 60, 0.2);
+        }
+        
+        .about-section h2, .contact-section h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #a4133c;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            text-align: center;
+            margin: 15px;
+            padding: 20px;
+            background-color: #ffccd5;
+            border-radius: 15px;
+            width: 250px;
+        }
+        
+        .contact-item i {
+            font-size: 2.5rem;
+            color: #a4133c;
+            margin-bottom: 15px;
+        }
+        
         /* Animations */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-50px); }
@@ -227,6 +355,39 @@
             .vivian-name { font-size: 2.8rem; }
             .message-section { padding: 25px; }
             .love-note { font-size: 1.7rem; }
+            
+            /* Responsive Navbar */
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background-color: rgba(255, 255, 255, 0.98);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 20px rgba(166, 19, 60, 0.1);
+                border-radius: 0 0 15px 15px;
+                padding: 20px 0;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+            }
+            
+            .nav-link {
+                display: inline-block;
+                width: 80%;
+                padding: 12px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -234,91 +395,182 @@
             .vivian-name { font-size: 2.3rem; }
             .message-text { font-size: 1.1rem; }
             .icon-item { width: 100%; }
+            body { padding-top: 80px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <marquee>
-            <h1>For My Dearest <span class="heart-icon">❤</span> Vivian</h1>
-        </marquee>
-            <p class="subtitle">A website i dedicated to the most amazing woman in my life</p>
-        </header>
-        
-        <section class="message-section">
-            <h2 class="vivian-name">To Vivian</h2>
+    <!-- ===== NEW NAVIGATION BAR ===== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <i class="fas fa-heart"></i> For Vivian
+            </a>
             
-            <p class="message-text">
-                From the moment you came into my life, everything changed for the better. Your name, <span class="highlight">Vivian</span>, means "full of life," and that's exactly what you are - a radiant, vibrant soul who brings light to every room you enter.
-            </p>
-            
-            <p class="message-text">
-                I want you to know how deeply I admire you. You are not just beautiful on the outside, but you possess an inner beauty that shines through in everything you do. Your strength inspires me, your kindness touches my heart, and your text is my favorite thing in the world.
-            </p>
-            
-            <p class="message-text">
-                You are a <span class="highlight">super woman</span> - strong, capable, and resilient. You face challenges with grace and determination, and I'm constantly in awe of your ability to handle anything life throws your way. You appreciate yourself, and that self-love makes you even more beautiful.
-            </p>
-            
-            <p class="message-text">
-                This website i created to express my feeling to you. Every word, every color, every animation represents a fraction of what I feel for you. You are my sunshine on cloudy days, my comfort in difficult times, and my greatest joy in life.
-            </p>
-        </section>
-        
-        <section class="icons-section">
-            <div class="icon-item">
-                <i class="fas fa-heart"></i>
-                <h3 class="icon-title">my best friebd</h3>
-                <p>You have all of my heart, forever and always.</p>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
             </div>
             
-            <div class="icon-item">
-                <i class="fas fa-star"></i>
-                <h3 class="icon-title">My Shining Star</h3>
-                <p>You light up my world with your brilliance.</p>
-            </div>
-            
-            <div class="icon-item">
-                <i class="fas fa-crown"></i>
-                <h3 class="icon-title">My Queen</h3>
-                <p>You deserve all the love and admiration in the world.</p>
-            </div>
-            
-            <div class="icon-item">
-                <i class="fas fa-dove"></i>
-                <h3 class="icon-title">My Peace</h3>
-                <p>With you, I've found my peace and my home.</p>
-            </div>
-        </section>
-        
-        <div class="love-note">
-            Vivian, you are loved more than words could ever express please just accept my request you will never regret to be mine.
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active" data-section="home">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link" data-section="about">
+                        <i class="fas fa-user"></i> About Me
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link" data-section="contact">
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                </li>
+            </ul>
         </div>
+    </nav>
+
+    <div class="container">
+        <!-- Home Section (Original Content) -->
+        <section id="home" class="page-section active">
+            <header>
+                <marquee>
+                    <h1>For My Dearest <span class="heart-icon">❤</span> Vivian</h1>
+                </marquee>
+                <p class="subtitle">A website i dedicated to the most amazing woman in my life</p>
+            </header>
+            
+            <section class="message-section">
+                <h2 class="vivian-name">To Vivian</h2>
+                
+                <p class="message-text">
+                    From the moment you came into my life, everything changed for the better. Your name, <span class="highlight">Vivian</span>, means "full of life," and that's exactly what you are - a radiant, vibrant soul who brings light to every room you enter.
+                </p>
+                
+                <p class="message-text">
+                    I want you to know how deeply I admire you. You are not just beautiful on the outside, but you possess an inner beauty that shines through in everything you do. Your strength inspires me, your kindness touches my heart, and your text is my favorite thing in the world.
+                </p>
+                
+                <p class="message-text">
+                    You are a <span class="highlight">super woman</span> - strong, capable, and resilient. You face challenges with grace and determination, and I'm constantly in awe of your ability to handle anything life throws your way. You appreciate yourself, and that self-love makes you even more beautiful.
+                </p>
+                
+                <p class="message-text">
+                    This website i created to express my feeling to you. Every word, every color, every animation represents a fraction of what I feel for you. You are my sunshine on cloudy days, my comfort in difficult times, and my greatest joy in life.
+                </p>
+            </section>
+            
+            <section class="icons-section">
+                <div class="icon-item">
+                    <i class="fas fa-heart"></i>
+                    <h3 class="icon-title">my best friebd</h3>
+                    <p>You have all of my heart, forever and always.</p>
+                </div>
+                
+                <div class="icon-item">
+                    <i class="fas fa-star"></i>
+                    <h3 class="icon-title">My Shining Star</h3>
+                    <p>You light up my world with your brilliance.</p>
+                </div>
+                
+                <div class="icon-item">
+                    <i class="fas fa-crown"></i>
+                    <h3 class="icon-title">My Queen</h3>
+                    <p>You deserve all the love and admiration in the world.</p>
+                </div>
+                
+                <div class="icon-item">
+                    <i class="fas fa-dove"></i>
+                    <h3 class="icon-title">My Peace</h3>
+                    <p>With you, I've found my peace and my home.</p>
+                </div>
+            </section>
+            
+            <div class="love-note">
+                Vivian, you are loved more than words could ever express please just accept my request you will never regret to be mine.
+            </div>
+            
+            <section class="icons-section">
+                <div class="icon-item">
+                    <i class="fas fa-gem"></i>
+                    <h3 class="icon-title">Precious</h3>
+                    <p>You are more valuable than any jewel.</p>
+                </div>
+                
+                <div class="icon-item">
+                    <i class="fas fa-sun"></i>
+                    <h3 class="icon-title">My Sunshine</h3>
+                    <p>You brighten even my darkest days.</p>
+                </div>
+                
+                <div class="icon-item">
+                    <i class="fas fa-rocket"></i>
+                    <h3 class="icon-title">Amazing</h3>
+                    <p>You achieve incredible things with grace.</p>
+                </div>
+                
+                <div class="icon-item">
+                    <i class="fas fa-infinity"></i>
+                    <h3 class="icon-title">Forever</h3>
+                    <p>My love for you has no end.</p>
+                </div>
+            </section>
+        </section>
         
-        <section class="icons-section">
-            <div class="icon-item">
-                <i class="fas fa-gem"></i>
-                <h3 class="icon-title">Precious</h3>
-                <p>You are more valuable than any jewel.</p>
+        <!-- About Me Section -->
+        <section id="about" class="page-section about-section">
+            <h2>About Me</h2>
+            <p class="message-text">
+                Hello Vivian, this is Zacharia. I want to take a moment to tell you a little about myself and why I created this website for you.
+            </p>
+            
+            <p class="message-text">
+                I'm someone who believes that when you find something truly special in life, you should cherish it with all your heart. And you, Vivian, are the most special person I've ever met.
+            </p>
+            
+            <p class="message-text">
+                I created this website because words alone could never fully express what I feel for you. Sometimes, actions speak louder than words, and I wanted to put in the effort to create something beautiful, just like you.
+            </p>
+            
+            <p class="message-text">
+                I may not be perfect, but my feelings for you are genuine and sincere. Every moment thinking about you brings a smile to my face, and every conversation with you makes my day better.
+            </p>
+            
+            <div class="love-note" style="margin-top: 30px;">
+                You inspire me to be a better person every day.
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="page-section contact-section">
+            <h2>Contact</h2>
+            <p class="message-text">
+                Vivian, if you'd like to talk more or have any questions about this website or my feelings for you, I would be overjoyed to hear from you.
+            </p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-heart"></i>
+                    <h3>My Heart</h3>
+                    <p>Always open for you</p>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-comments"></i>
+                    <h3>My Messages</h3>
+                    <p>Always available for you</p>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>My Time</h3>
+                    <p>Always yours whenever you need</p>
+                </div>
             </div>
             
-            <div class="icon-item">
-                <i class="fas fa-sun"></i>
-                <h3 class="icon-title">My Sunshine</h3>
-                <p>You brighten even my darkest days.</p>
-            </div>
-            
-            <div class="icon-item">
-                <i class="fas fa-rocket"></i>
-                <h3 class="icon-title">Amazing</h3>
-                <p>You achieve incredible things with grace.</p>
-            </div>
-            
-            <div class="icon-item">
-                <i class="fas fa-infinity"></i>
-                <h3 class="icon-title">Forever</h3>
-                <p>My love for you has no end.</p>
+            <div class="love-note" style="margin-top: 30px;">
+                I'm just a message away whenever you're ready to talk.
             </div>
         </section>
         
@@ -332,16 +584,69 @@
             </div>
             
             <p>I Created with all the love in my heart for you, Vivian</p>
-            <p>You are beautiful, Super woman, Good adviser,  strong, and deeply cherished</p>
+            <p>You are beautiful, Super woman, Good adviser, strong, and deeply cherished</p>
             <p style="margin-top: 20px; font-size: 0.8rem;">Every day with you is a blessing I don't take for granted</p>
-            <p>&copy;2025 All Right Reserved <br>Designed & Developed by Zacharia
-            </p>
+            <p>&copy;2025 All Right Reserved <br>Designed & Developed by Zacharia</p>
         </footer>
     </div>
 
     <script>
         // Add some interactive elements
         document.addEventListener('DOMContentLoaded', function() {
+            // ===== NAVIGATION FUNCTIONALITY =====
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageSections = document.querySelectorAll('.page-section');
+            
+            // Toggle mobile menu
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                // Change hamburger icon
+                const icon = hamburger.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Handle navigation clicks
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get the target section
+                    const targetSection = this.getAttribute('data-section');
+                    
+                    // Update active nav link
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show the target section
+                    pageSections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === targetSection) {
+                            section.classList.add('active');
+                        }
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        const icon = hamburger.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                    
+                    // Scroll to top of the page
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                });
+            });
+            
+            // ===== EXISTING HEARTS ANIMATION CODE =====
             // Add floating hearts animation to the background
             function createFloatingHeart() {
                 const heart = document.createElement('div');
@@ -380,6 +685,11 @@
             
             // Add click effect - hearts appear where user clicks
             document.addEventListener('click', function(e) {
+                // Don't create hearts when clicking navigation links
+                if (e.target.closest('.nav-link') || e.target.closest('.hamburger')) {
+                    return;
+                }
+                
                 const clickHeart = document.createElement('div');
                 clickHeart.innerHTML = '❤';
                 clickHeart.style.position = 'fixed';
